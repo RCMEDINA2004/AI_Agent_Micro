@@ -58,21 +58,4 @@ app.post('/agent/chat', async (req, res) => {
       }
     }
 
-    throw lastError;
-
-  } catch (err) {
-    console.error('Gemini error:', err.message);
-    res.status(500).json({ error: 'Error con Gemini: ' + err.message });
-  }
-});
-
-app.get('/health', (req, res) => {
-  res.json({ ok: true, gemini_key: !!process.env.GEMINI_API_KEY });
-});
-
-// Exportamos app y funciones auxiliares para los tests
-module.exports = { app, construirPrompt, extraerMensaje };
-
-if (require.main === module) {
-  app.listen(8085, () => console.log('AI Agent en puerto 8085'));
-}
+   
