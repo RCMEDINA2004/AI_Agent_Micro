@@ -28,7 +28,29 @@ describe('Servicio AI-Agent (VelkyBot)', () => {
     });
   });
 
- 
+  // ----------- extraerMensaje() -----------
+  describe('extraerMensaje()', () => {
+
+    test('extrae mensaje de un objeto', () => {
+      const msg = extraerMensaje({ message: 'Hola' });
+      expect(msg).toBe('Hola');
+    });
+
+    test('extrae mensaje de un string JSON', () => {
+      const msg = extraerMensaje('{"message":"Hola"}');
+      expect(msg).toBe('Hola');
+    });
+
+    test('devuelve undefined si el body es string invalido', () => {
+      const msg = extraerMensaje('no es json');
+      expect(msg).toBeUndefined();
+    });
+
+    test('devuelve undefined si el body esta vacio', () => {
+      const msg = extraerMensaje({});
+      expect(msg).toBeUndefined();
+    });
+  });
 
   // ----------- POST /agent/chat -----------
   describe('POST /agent/chat', () => {
